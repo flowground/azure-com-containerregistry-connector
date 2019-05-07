@@ -1,0 +1,41 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "A request to check whether a container registry name is available.",
+            "properties": {
+                "name": {
+                    "description": "The name of the container registry.",
+                    "maxLength": 50,
+                    "minLength": 5,
+                    "pattern": "^[a-zA-Z0-9]*$",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "The resource type of the container registry. This field must be set to 'Microsoft.ContainerRegistry/registries'.",
+                    "enum": [
+                        "Microsoft.ContainerRegistry/registries"
+                    ],
+                    "type": "string",
+                    "x-ms-enum": {
+                        "modelAsString": false,
+                        "name": "ContainerRegistryResourceType"
+                    }
+                }
+            },
+            "required": [
+                "name",
+                "type"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

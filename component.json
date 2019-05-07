@@ -1,0 +1,508 @@
+{
+    "title": "ContainerRegistryManagementClient",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/containerregistry/2017-10-01/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "Operations_List": {
+            "main": "./lib/actions/Operations_List.js",
+            "title": "Lists all of the available Azure Container Registry REST API operations.",
+            "description": "Lists all of the available Azure Container Registry REST API operations.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Operations_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Registries_CheckNameAvailability": {
+            "main": "./lib/actions/Registries_CheckNameAvailability.js",
+            "title": "Checks whether the container registry name is available for use. The name must contain only alphanumeric characters, be globally unique, and between 5 and 50 characters in length.",
+            "description": "Checks whether the container registry name is available for use. The name must contain only alphanumeric characters, be globally unique, and between 5 and 50 characters in length.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Registries_CheckNameAvailability.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Registries_List": {
+            "main": "./lib/actions/Registries_List.js",
+            "title": "Lists all the container registries under the specified subscription.",
+            "description": "Lists all the container registries under the specified subscription.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Registries_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Registries_ListByResourceGroup": {
+            "main": "./lib/actions/Registries_ListByResourceGroup.js",
+            "title": "Lists all the container registries under the specified resource group.",
+            "description": "Lists all the container registries under the specified resource group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Registries_ListByResourceGroup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Registries_Delete": {
+            "main": "./lib/actions/Registries_Delete.js",
+            "title": "Deletes a container registry.",
+            "description": "Deletes a container registry.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Registries_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Registries_Get": {
+            "main": "./lib/actions/Registries_Get.js",
+            "title": "Gets the properties of the specified container registry.",
+            "description": "Gets the properties of the specified container registry.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Registries_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Registries_Update": {
+            "main": "./lib/actions/Registries_Update.js",
+            "title": "Updates a container registry with the specified parameters.",
+            "description": "Updates a container registry with the specified parameters.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Registries_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Registries_Create": {
+            "main": "./lib/actions/Registries_Create.js",
+            "title": "Creates a container registry with the specified parameters.",
+            "description": "Creates a container registry with the specified parameters.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Registries_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Registries_ImportImage": {
+            "main": "./lib/actions/Registries_ImportImage.js",
+            "title": "Copies an image to this container registry from the specified container registry.",
+            "description": "Copies an image to this container registry from the specified container registry.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Registries_ImportImage.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Registries_ListCredentials": {
+            "main": "./lib/actions/Registries_ListCredentials.js",
+            "title": "Lists the login credentials for the specified container registry.",
+            "description": "Lists the login credentials for the specified container registry.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Registries_ListCredentials.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Registries_ListPolicies": {
+            "main": "./lib/actions/Registries_ListPolicies.js",
+            "title": "Lists the policies for the specified container registry.",
+            "description": "Lists the policies for the specified container registry.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Registries_ListPolicies.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Registries_ListUsages": {
+            "main": "./lib/actions/Registries_ListUsages.js",
+            "title": "Gets the quota usages for the specified container registry.",
+            "description": "Gets the quota usages for the specified container registry.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Registries_ListUsages.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Registries_RegenerateCredential": {
+            "main": "./lib/actions/Registries_RegenerateCredential.js",
+            "title": "Regenerates one of the login credentials for the specified container registry.",
+            "description": "Regenerates one of the login credentials for the specified container registry.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Registries_RegenerateCredential.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Replications_List": {
+            "main": "./lib/actions/Replications_List.js",
+            "title": "Lists all the replications for the specified container registry.",
+            "description": "Lists all the replications for the specified container registry.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Replications_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Replications_Delete": {
+            "main": "./lib/actions/Replications_Delete.js",
+            "title": "Deletes a replication from a container registry.",
+            "description": "Deletes a replication from a container registry.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Replications_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Replications_Get": {
+            "main": "./lib/actions/Replications_Get.js",
+            "title": "Gets the properties of the specified replication.",
+            "description": "Gets the properties of the specified replication.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Replications_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Replications_Update": {
+            "main": "./lib/actions/Replications_Update.js",
+            "title": "Updates a replication for a container registry with the specified parameters.",
+            "description": "Updates a replication for a container registry with the specified parameters.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Replications_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Replications_Create": {
+            "main": "./lib/actions/Replications_Create.js",
+            "title": "Creates a replication for a container registry with the specified parameters.",
+            "description": "Creates a replication for a container registry with the specified parameters.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Replications_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Registries_UpdatePolicies": {
+            "main": "./lib/actions/Registries_UpdatePolicies.js",
+            "title": "Updates the policies for the specified container registry.",
+            "description": "Updates the policies for the specified container registry.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Registries_UpdatePolicies.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Webhooks_List": {
+            "main": "./lib/actions/Webhooks_List.js",
+            "title": "Lists all the webhooks for the specified container registry.",
+            "description": "Lists all the webhooks for the specified container registry.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Webhooks_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Webhooks_Delete": {
+            "main": "./lib/actions/Webhooks_Delete.js",
+            "title": "Deletes a webhook from a container registry.",
+            "description": "Deletes a webhook from a container registry.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Webhooks_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Webhooks_Get": {
+            "main": "./lib/actions/Webhooks_Get.js",
+            "title": "Gets the properties of the specified webhook.",
+            "description": "Gets the properties of the specified webhook.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Webhooks_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Webhooks_Update": {
+            "main": "./lib/actions/Webhooks_Update.js",
+            "title": "Updates a webhook with the specified parameters.",
+            "description": "Updates a webhook with the specified parameters.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Webhooks_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Webhooks_Create": {
+            "main": "./lib/actions/Webhooks_Create.js",
+            "title": "Creates a webhook for a container registry with the specified parameters.",
+            "description": "Creates a webhook for a container registry with the specified parameters.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Webhooks_Create.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Webhooks_GetCallbackConfig": {
+            "main": "./lib/actions/Webhooks_GetCallbackConfig.js",
+            "title": "Gets the configuration of service URI and custom headers for the webhook.",
+            "description": "Gets the configuration of service URI and custom headers for the webhook.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Webhooks_GetCallbackConfig.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Webhooks_ListEvents": {
+            "main": "./lib/actions/Webhooks_ListEvents.js",
+            "title": "Lists recent events for the specified webhook.",
+            "description": "Lists recent events for the specified webhook.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Webhooks_ListEvents.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Webhooks_Ping": {
+            "main": "./lib/actions/Webhooks_Ping.js",
+            "title": "Triggers a ping event to be sent to the webhook.",
+            "description": "Triggers a ping event to be sent to the webhook.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Webhooks_Ping.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

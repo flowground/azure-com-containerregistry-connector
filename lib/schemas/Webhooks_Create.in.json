@@ -1,0 +1,108 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1
+        },
+        "registryName": {
+            "required": true,
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 50,
+            "pattern": "^[a-zA-Z0-9]*$"
+        },
+        "webhookName": {
+            "required": true,
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 50,
+            "pattern": "^[a-zA-Z0-9]*$"
+        },
+        "requestBody": {
+            "description": "The parameters for creating a webhook.",
+            "properties": {
+                "location": {
+                    "description": "The location of the webhook. This cannot be changed after the resource is created.",
+                    "type": "string"
+                },
+                "properties": {
+                    "description": "The properties that the webhook will be created with.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "actions": {
+                            "description": "The list of actions that trigger the webhook to post notifications.",
+                            "items": {
+                                "enum": [
+                                    "push",
+                                    "delete",
+                                    "quarantine",
+                                    "chart_push",
+                                    "chart_delete"
+                                ],
+                                "type": "string",
+                                "x-ms-enum": {
+                                    "modelAsString": true,
+                                    "name": "WebhookAction"
+                                }
+                            },
+                            "type": "array"
+                        },
+                        "customHeaders": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Custom headers that will be added to the webhook notifications.",
+                            "type": "object"
+                        },
+                        "scope": {
+                            "description": "The scope of repositories where the event can be triggered. For example, 'foo:*' means events for all tags under repository 'foo'. 'foo:bar' means events for 'foo:bar' only. 'foo' is equivalent to 'foo:latest'. Empty means all events.",
+                            "type": "string"
+                        },
+                        "serviceUri": {
+                            "description": "The service URI for the webhook to post notifications.",
+                            "type": "string"
+                        },
+                        "status": {
+                            "description": "The status of the webhook at the time the operation was called.",
+                            "enum": [
+                                "enabled",
+                                "disabled"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "WebhookStatus"
+                            }
+                        }
+                    },
+                    "required": [
+                        "serviceUri",
+                        "actions"
+                    ],
+                    "type": "object"
+                },
+                "tags": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The tags for the webhook.",
+                    "type": "object"
+                }
+            },
+            "required": [
+                "location"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

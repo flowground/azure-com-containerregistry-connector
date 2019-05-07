@@ -1,0 +1,78 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1
+        },
+        "registryName": {
+            "required": true,
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 50,
+            "pattern": "^[a-zA-Z0-9]*$"
+        },
+        "requestBody": {
+            "description": "An object that represents policies for a container registry.",
+            "properties": {
+                "quarantinePolicy": {
+                    "description": "An object that represents quarantine policy for a container registry.",
+                    "properties": {
+                        "status": {
+                            "description": "The value that indicates whether the policy is enabled or not.",
+                            "enum": [
+                                "enabled",
+                                "disabled"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "PolicyStatus"
+                            }
+                        }
+                    },
+                    "type": "object"
+                },
+                "trustPolicy": {
+                    "description": "An object that represents content trust policy for a container registry.",
+                    "properties": {
+                        "status": {
+                            "description": "The value that indicates whether the policy is enabled or not.",
+                            "enum": [
+                                "enabled",
+                                "disabled"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "PolicyStatus"
+                            }
+                        },
+                        "type": {
+                            "description": "The type of trust policy.",
+                            "enum": [
+                                "Notary"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "TrustPolicyType"
+                            }
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

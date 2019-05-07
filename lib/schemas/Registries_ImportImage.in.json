@@ -1,0 +1,98 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1
+        },
+        "registryName": {
+            "required": true,
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 50,
+            "pattern": "^[a-zA-Z0-9]*$"
+        },
+        "requestBody": {
+            "properties": {
+                "mode": {
+                    "default": "NoForce",
+                    "description": "When Force, any existing target tags will be overwritten. When NoForce, any existing target tags will fail the operation before any copying begins.",
+                    "enum": [
+                        "NoForce",
+                        "Force"
+                    ],
+                    "type": "string",
+                    "x-ms-enum": {
+                        "modelAsString": true,
+                        "name": "ImportMode"
+                    }
+                },
+                "source": {
+                    "description": "The source of the image.",
+                    "properties": {
+                        "credentials": {
+                            "description": "Credentials used when importing from a registry uri.",
+                            "properties": {
+                                "password": {
+                                    "description": "The password used to authenticate with the source registry.",
+                                    "type": "string"
+                                },
+                                "username": {
+                                    "description": "The username to authenticate with the source registry.",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "password"
+                            ],
+                            "type": "object"
+                        },
+                        "registryUri": {
+                            "description": "The address of the source registry (e.g. 'mcr.microsoft.com').",
+                            "type": "string"
+                        },
+                        "resourceId": {
+                            "description": "The resource identifier of the source Azure Container Registry.",
+                            "type": "string"
+                        },
+                        "sourceImage": {
+                            "description": "Repository name of the source image.\r\nSpecify an image by repository ('hello-world'). This will use the 'latest' tag.\r\nSpecify an image by tag ('hello-world:latest').\r\nSpecify an image by sha256-based manifest digest ('hello-world@sha256:abc123').",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "sourceImage"
+                    ],
+                    "type": "object"
+                },
+                "targetTags": {
+                    "description": "List of strings of the form repo[:tag]. When tag is omitted the source will be used (or 'latest' if source tag is also omitted).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "untaggedTargetRepositories": {
+                    "description": "List of strings of repository names to do a manifest only copy. No tag will be created.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "source"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

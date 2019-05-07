@@ -1,0 +1,182 @@
+{
+    "type": "object",
+    "properties": {
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1
+        },
+        "registryName": {
+            "required": true,
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 50,
+            "pattern": "^[a-zA-Z0-9]*$"
+        },
+        "requestBody": {
+            "description": "The parameters for updating a container registry.",
+            "properties": {
+                "properties": {
+                    "description": "The properties that the container registry will be updated with.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "adminUserEnabled": {
+                            "description": "The value that indicates whether the admin user is enabled.",
+                            "type": "boolean"
+                        },
+                        "networkRuleSet": {
+                            "description": "The network rule set for a container registry.",
+                            "properties": {
+                                "defaultAction": {
+                                    "default": "Allow",
+                                    "description": "The default action of allow or deny when no other rules match.",
+                                    "enum": [
+                                        "Allow",
+                                        "Deny"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": true,
+                                        "name": "DefaultAction"
+                                    }
+                                },
+                                "ipRules": {
+                                    "description": "The IP ACL rules.",
+                                    "items": {
+                                        "description": "IP rule with specific IP or IP range in CIDR format.",
+                                        "properties": {
+                                            "action": {
+                                                "default": "Allow",
+                                                "description": "The action of IP ACL rule.",
+                                                "enum": [
+                                                    "Allow"
+                                                ],
+                                                "type": "string",
+                                                "x-ms-enum": {
+                                                    "modelAsString": true,
+                                                    "name": "Action"
+                                                }
+                                            },
+                                            "value": {
+                                                "description": "Specifies the IP or IP range in CIDR format. Only IPV4 address is allowed.",
+                                                "type": "string",
+                                                "x-ms-client-name": "IPAddressOrRange"
+                                            }
+                                        },
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                },
+                                "virtualNetworkRules": {
+                                    "description": "The virtual network rules.",
+                                    "items": {
+                                        "description": "Virtual network rule.",
+                                        "properties": {
+                                            "action": {
+                                                "default": "Allow",
+                                                "description": "The action of virtual network rule.",
+                                                "enum": [
+                                                    "Allow"
+                                                ],
+                                                "type": "string",
+                                                "x-ms-enum": {
+                                                    "modelAsString": true,
+                                                    "name": "Action"
+                                                }
+                                            },
+                                            "id": {
+                                                "description": "Resource ID of a subnet, for example: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{vnetName}/subnets/{subnetName}.",
+                                                "type": "string",
+                                                "x-ms-client-name": "VirtualNetworkResourceId"
+                                            }
+                                        },
+                                        "required": [
+                                            "id"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "required": [
+                                "defaultAction"
+                            ],
+                            "type": "object"
+                        },
+                        "storageAccount": {
+                            "description": "The parameters of a storage account for the container registry. Only applicable to Classic SKU. If specified, the storage account must be in the same physical location as the container registry.",
+                            "properties": {
+                                "id": {
+                                    "description": "The resource ID of the storage account.",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "id"
+                            ],
+                            "type": "object"
+                        }
+                    },
+                    "type": "object"
+                },
+                "sku": {
+                    "description": "The SKU of the container registry.",
+                    "properties": {
+                        "name": {
+                            "description": "The SKU name of the container registry. Required for registry creation.",
+                            "enum": [
+                                "Classic",
+                                "Basic",
+                                "Standard",
+                                "Premium"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "SkuName"
+                            }
+                        },
+                        "tier": {
+                            "description": "The SKU tier based on the SKU name.",
+                            "enum": [
+                                "Classic",
+                                "Basic",
+                                "Standard",
+                                "Premium"
+                            ],
+                            "readOnly": true,
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "SkuTier"
+                            }
+                        }
+                    },
+                    "required": [
+                        "name"
+                    ],
+                    "type": "object"
+                },
+                "tags": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The tags for the container registry.",
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
