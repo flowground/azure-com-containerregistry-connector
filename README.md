@@ -5,7 +5,7 @@
 A generated **flow**ground connector for the ContainerRegistryManagementClient API (version 2017-10-01).
 
 Generated from: https://api.apis.guru/v2/specs/azure.com/containerregistry/2017-10-01/swagger.json<br/>
-Generated at: 2019-05-07T17:37:52+03:00
+Generated at: 2019-06-11T18:13:49+03:00
 
 ## API Description
 
